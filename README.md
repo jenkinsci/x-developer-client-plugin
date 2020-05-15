@@ -43,6 +43,7 @@ The plugin will work with Jenkins build, and print the result of analysis servic
 
 X-Developer will send you email when analysis job is completed, you could open report through the link in it.
 
+---
 
 ## Demo
 
