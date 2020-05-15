@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+    This plugin allows you to configure X-Developer account and team for git log analysis.
+</div>
