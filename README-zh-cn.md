@@ -4,7 +4,7 @@
 - [中文](https://github.com/FieldTech/x-developer-client-plugin/blob/master/README-zh-cn.md)
 
 
-X-Developer Plugin 在构建任务完成后，自动触发 X-Developer 团队效能分析并通知分析结果。
+> X-Developer Client Plugin 在 Jenkins 构建任务完成后，触发 X-Developer 团队效能分析并通知分析结果。
 
 [X-Developer](https://x-developer.cn) 由场量科技研发，是全球第一款事实数据型研发效能度量分析平台。使用 X-Developer 平台及其开源工具，无需购买、设置或管理任何基础设施，您只需登录即可开始开展研发团队效能改进工作。目前，X-Developer 提供了最便捷、完整的研发效能度量解决方案，让您能够以开发者为中心展开改进活动，使您的团队能够围绕目标协同工作，及时同步项目进展，从而将他们从繁重的任务状态维护、项目报告工作中解放出来，集中精力完成研发工作，更好地编写代码，提高业务获得的价值。
 
