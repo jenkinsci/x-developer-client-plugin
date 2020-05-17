@@ -61,4 +61,4 @@
 
 ## 许可证
 
-项目中所有的脚本、文档都遵循 [MIT License](https://github.com/FieldTech/x-developer-plugin/blob/master/LICENSE)。
+项目中所有的脚本、文档都遵循 [MIT License](https://github.com/FieldTech/x-developer-client-plugin/blob/master/LICENSE)。

@@ -55,4 +55,4 @@ Any question or request, please contact us via [support@withfield.tech](mailto:s
 
 ## License
 
-All the scripts and documentation in this project under the [MIT License](https://github.com/FieldTech/x-developer-analysis-actions/blob/master/LICENSE).
+All the scripts and documentation in this project under the [MIT License](https://github.com/FieldTech/x-developer-client-plugin/blob/master/LICENSE).
