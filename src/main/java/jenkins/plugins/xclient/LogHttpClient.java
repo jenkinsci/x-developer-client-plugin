@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.xclient;
+package jenkins.plugins.xclient;
 
 import hudson.model.TaskListener;
 import net.sf.json.JSONObject;
@@ -15,21 +15,31 @@ import java.net.URISyntaxException;
 import java.util.*;
 
 /**
- * @author Juatina Chen
+ * Core logic of invoking X-Developer analysis service.
+ *
+ * @author Chen Jiaxing
  * @since 2020/3/30
  */
 public class LogHttpClient {
 
+    /**
+     * Url that represent X-Developer analysis service.
+     */
     private String serviceUrl;
 
-    public LogHttpClient(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
+    LogHttpClient() {
+        this.serviceUrl = Configuration.get().getServiceUrl();
     }
 
-    public static boolean connect(String serviceUrl, String appId, String appKey) throws IOException {
+    /**
+     * To test connect X-Developer analysis service.
+     * @return {@code true} if connect is success.
+     * @throws IOException
+     */
+    static boolean testConnect() throws IOException {
         try (CloseableHttpClient client =HttpClients.createDefault()) {
-            URIBuilder builder = new URIBuilder(serviceUrl);
-            List<NameValuePair> params = buildBasicParameters(appId, appKey, "");
+            URIBuilder builder = new URIBuilder(Configuration.get().getServiceUrl());
+            List<NameValuePair> params = buildBasicParameters("");
             builder.setParameters(params);
             HttpGet httpGet = new HttpGet(builder.build());
             try (CloseableHttpResponse response = client.execute(httpGet)) {
@@ -45,7 +55,13 @@ public class LogHttpClient {
         return false;
     }
 
-    public boolean updateStatus(List<NameValuePair> params, TaskListener listener) {
+    /**
+     * Try to update last commit time of repository.
+     * @param params the parameters to invoke service
+     * @param listener the listener of Jenkins job
+     * @return {@code true} if success
+     */
+    boolean updateStatus(List<NameValuePair> params, TaskListener listener) {
 
         try (CloseableHttpClient client =HttpClients.createDefault()) {
             URIBuilder builder = new URIBuilder(serviceUrl);
@@ -59,7 +75,7 @@ public class LogHttpClient {
                     JSONObject dataSources = jsonObject.getJSONObject("dataSources");
                     String force = params.get(7).getValue();
                     if (dataSources.keySet().size() > 0 || Boolean.valueOf(force)) {
-                        Map<String, File> fileMap = buildFilesParameters(dataSources, listener);
+                        Map<String, File> fileMap = buildFilesParameters(dataSources);
                         if (!fileMap.isEmpty()) {
                             listener.getLogger().println(Messages.LogHttpClient_Response_startAnalysis());
                             return analysis(fileMap, params, listener);
@@ -74,7 +90,14 @@ public class LogHttpClient {
         return false;
     }
 
-    public boolean analysis(Map<String, File> fileMap, List<NameValuePair> params, TaskListener listener) {
+    /**
+     * Try to analysis Git log.
+     * @param fileMap the list of Git log files
+     * @param params the parameters to invoke service
+     * @param listener the listener of Jenkins job
+     * @return {@code true} if success
+     */
+    boolean analysis(Map<String, File> fileMap, List<NameValuePair> params, TaskListener listener) {
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         for (Map.Entry<String, File> entry : fileMap.entrySet()) {
             builder.addBinaryBody(entry.getKey(), entry.getValue());
@@ -104,16 +127,14 @@ public class LogHttpClient {
         return false;
     }
 
-    public static List<NameValuePair> buildUpdateParameters(
-            String appId,
-            String appKey,
+    static List<NameValuePair> buildUpdateParameters(
             String teamId,
             String logFile,
             String logFilePath,
             String lastCommit,
             boolean master,
             boolean force) {
-        List<NameValuePair> params = buildBasicParameters(appId, appKey, teamId);
+        List<NameValuePair> params = buildBasicParameters(teamId);
         BasicNameValuePair paramLog = new BasicNameValuePair("log", logFile);
         BasicNameValuePair paramLogPath = new BasicNameValuePair("logPath", logFilePath);
         BasicNameValuePair paramLastCommit = new BasicNameValuePair("lastCommitted", lastCommit);
@@ -127,13 +148,11 @@ public class LogHttpClient {
         return params;
     }
 
-    public static List<NameValuePair> buildBasicParameters(
-            String appId,
-            String appKey,
+    static List<NameValuePair> buildBasicParameters(
             String teamId) {
         List<NameValuePair> params = new LinkedList<>();
-        BasicNameValuePair paramAppId = new BasicNameValuePair("appid", appId);
-        BasicNameValuePair paramAppKey = new BasicNameValuePair("appkey", appKey);
+        BasicNameValuePair paramAppId = new BasicNameValuePair("appid", Configuration.get().getAppid());
+        BasicNameValuePair paramAppKey = new BasicNameValuePair("appkey", Configuration.get().getAppkey());
         BasicNameValuePair paramTeamId = new BasicNameValuePair("team", teamId);
         params.add(paramAppId);
         params.add(paramAppKey);
@@ -141,7 +160,7 @@ public class LogHttpClient {
         return params;
     }
 
-    public static Map<String, File> buildFilesParameters(JSONObject dataSources, TaskListener listener) {
+    static Map<String, File> buildFilesParameters(JSONObject dataSources) {
         Map<String, File> fileMap = new HashMap<>();
         int index = 0;
         for (Iterator keys = dataSources.keys(); keys.hasNext(); ) {

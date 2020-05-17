@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.xclient;
+package jenkins.plugins.xclient;
 
 import hudson.Extension;
 import hudson.Functions;
@@ -16,7 +16,13 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
- * Example of Jenkins global configuration.
+ * Config X-Developer account ID-key in Jenkins.
+ *
+ * <p>
+ *     This is a global configuration of Jenkins
+ * </p>
+ * @author Chen Jiaxing
+ * @since 2020/3/30
  */
 @Extension
 public class Configuration extends GlobalConfiguration {
@@ -27,9 +33,18 @@ public class Configuration extends GlobalConfiguration {
         return GlobalConfiguration.all().get(Configuration.class);
     }
 
+    /**
+     * Unique id that represent the given user.
+     */
     private String appid;
+    /**
+     * Secret key that store the given user's access key.
+     */
     private Secret secretKey;
 
+    /**
+     * Url tha represent X-Developer analysis service.
+     */
     private final String serviceUrl = "https://x-developer.cn/analysis/update/";
 
     public Configuration() {
@@ -98,7 +113,7 @@ public class Configuration extends GlobalConfiguration {
                 return FormValidation.error(Messages.Configuration_Validation_errors_missingAppKey());
             }
 
-            if (LogHttpClient.connect(serviceUrl, appid, appkey)) {
+            if (LogHttpClient.testConnect()) {
                 return FormValidation.ok(Messages.Configuration_Validation_success());
             }
             return FormValidation.error(Messages.Configuration_Validation_errors_authFailed());
