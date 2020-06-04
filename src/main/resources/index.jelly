@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    This plugin allows you to configure X-Developer account and team for git log analysis.
+    This plugin allows you to configure and use <a href="https://x-developer.cn" target="_blank">X-Developer</a> - a git analytics platform for engineering in Jenkins.
 </div>

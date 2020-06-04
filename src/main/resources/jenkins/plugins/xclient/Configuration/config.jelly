@@ -1,12 +1,12 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
     <f:section title="${%X-Developer Client Plugin}">
-        <f:entry field="appid" title="${%App ID}">
+        <f:entry field="appId" title="${%App ID}">
             <f:textbox/>
         </f:entry>
-        <f:entry field="appkey"  title="${%App Key}">
+        <f:entry field="appKey"  title="${%App Key}">
             <f:password/>
         </f:entry>
-        <f:validateButton method="testConnection" title="${%Test connection}" with="appid,appkey" />
+        <f:validateButton method="testConnection" title="${%Test connection}" with="appId,appKey" />
     </f:section>
 </j:jelly>

@@ -36,10 +36,16 @@ public class LogHttpClient {
      * @return {@code true} if connect is success.
      * @throws IOException
      */
-    static boolean testConnect() throws IOException {
+    static boolean testConnect(String appId, String appKey) throws IOException {
         try (CloseableHttpClient client =HttpClients.createDefault()) {
             URIBuilder builder = new URIBuilder(Configuration.get().getServiceUrl());
-            List<NameValuePair> params = buildBasicParameters("");
+            List<NameValuePair> params = new LinkedList<>();
+            BasicNameValuePair paramAppId = new BasicNameValuePair("appid", appId);
+            BasicNameValuePair paramAppKey = new BasicNameValuePair("appkey", appKey);
+            BasicNameValuePair paramTeamId = new BasicNameValuePair("team", "");
+            params.add(paramAppId);
+            params.add(paramAppKey);
+            params.add(paramTeamId);
             builder.setParameters(params);
             HttpGet httpGet = new HttpGet(builder.build());
             try (CloseableHttpResponse response = client.execute(httpGet)) {
@@ -82,6 +88,8 @@ public class LogHttpClient {
                         }
                     }
                     return true;
+                } else {
+                    listener.getLogger().println(jsonObject.getString("status"));
                 }
             }
         } catch (IOException | ParseException | URISyntaxException e) {
@@ -151,8 +159,8 @@ public class LogHttpClient {
     static List<NameValuePair> buildBasicParameters(
             String teamId) {
         List<NameValuePair> params = new LinkedList<>();
-        BasicNameValuePair paramAppId = new BasicNameValuePair("appid", Configuration.get().getAppid());
-        BasicNameValuePair paramAppKey = new BasicNameValuePair("appkey", Configuration.get().getAppkey());
+        BasicNameValuePair paramAppId = new BasicNameValuePair("appid", Configuration.get().getAppId());
+        BasicNameValuePair paramAppKey = new BasicNameValuePair("appkey", Configuration.get().getAppKey());
         BasicNameValuePair paramTeamId = new BasicNameValuePair("team", teamId);
         params.add(paramAppId);
         params.add(paramAppKey);

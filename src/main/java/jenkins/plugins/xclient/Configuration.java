@@ -36,7 +36,7 @@ public class Configuration extends GlobalConfiguration {
     /**
      * Unique id that represent the given user.
      */
-    private String appid;
+    private String appId;
     /**
      * Secret key that store the given user's access key.
      */
@@ -52,41 +52,41 @@ public class Configuration extends GlobalConfiguration {
     }
 
     /** @return the currently configured label, if any */
-    public String getAppid() {
-        return appid;
+    public String getAppId() {
+        return appId;
     }
-    public String getAppkey() { return Secret.toString(secretKey); }
+    public String getAppKey() { return Secret.toString(secretKey); }
     public String getServiceUrl() { return serviceUrl; }
 
     /**
-     * Together with {@link #getAppid}, binds to entry in {@code config.jelly}.
-     * @param appid the new value of this field
+     * Together with {@link #getAppId}, binds to entry in {@code config.jelly}.
+     * @param appId the new value of this field
      */
     @DataBoundSetter
-    public void setAppid(String appid) {
-        this.appid = appid;
+    public void setAppId(String appId) {
+        this.appId = appId;
         save();
     }
 
     /**
-     * Together with {@link #getAppkey}, binds to entry in {@code config.jelly}.
-     * @param appkey the new value of this field
+     * Together with {@link #getAppKey}, binds to entry in {@code config.jelly}.
+     * @param appKey the new value of this field
      */
     @DataBoundSetter
-    public void setAppkey(String appkey) {
-        this.secretKey = Secret.fromString(appkey);
+    public void setAppKey(String appKey) {
+        this.secretKey = Secret.fromString(appKey);
         save();
     }
 
 
-    public FormValidation doCheckAppid(@QueryParameter String value) {
+    public FormValidation doCheckAppId(@QueryParameter String value) {
         if (StringUtils.isEmpty(value)) {
             return FormValidation.warning(Messages.Configuration_Validation_errors_missingAppId());
         }
         return FormValidation.ok();
     }
 
-    public FormValidation doCheckAppkey(@QueryParameter String value) {
+    public FormValidation doCheckAppKey(@QueryParameter String value) {
         if(StringUtils.isEmpty(value)) {
             return FormValidation.warning(Messages.Configuration_Validation_errors_missingAppKey());
         }
@@ -95,8 +95,8 @@ public class Configuration extends GlobalConfiguration {
 
     @RequirePOST
     public FormValidation doTestConnection(
-            @QueryParameter String appid,
-            @QueryParameter String appkey) {
+            @QueryParameter String appId,
+            @QueryParameter String appKey) {
         try {
             final Jenkins jenkis = Jenkins.getInstance();
             if (jenkis == null) {
@@ -105,21 +105,21 @@ public class Configuration extends GlobalConfiguration {
 
             jenkis.checkPermission(Jenkins.ADMINISTER);
 
-            if (appid.length() == 0) {
+            if (appId.length() == 0) {
                 return FormValidation.error(Messages.Configuration_Validation_errors_missingAppId());
             }
 
-            if (appkey.length() == 0) {
+            if (appKey.length() == 0) {
                 return FormValidation.error(Messages.Configuration_Validation_errors_missingAppKey());
             }
 
-            if (LogHttpClient.testConnect()) {
+            if (LogHttpClient.testConnect(appId, appKey)) {
                 return FormValidation.ok(Messages.Configuration_Validation_success());
             }
             return FormValidation.error(Messages.Configuration_Validation_errors_authFailed());
         } catch (IOException e) {
             LOGGER.warning(e.getMessage());
-            return FormValidation.errorWithMarkup("<p>" + Messages.Configuration_Validation_failed()+"</p><pre>"+ Util.escape(Functions.printThrowable(e))+"</pre>");
+            return FormValidation.errorWithMarkup("<p>" + Messages.Configuration_Validation_failed() +"</p><pre>"+ Util.escape(Functions.printThrowable(e))+"</pre>");
         }
     }
 

@@ -16,9 +16,8 @@
         <java.level>8</java.level>
     </properties>
     <name>X-Developer Client Plugin</name>
-    <description>Process git log to X-Developer analysis server.</description>
-<!--    <url>https://wiki.jenkins-ci.org/display/JENKINS/X+Developer+Client+Plugin</url>-->
-    <url>https://x-developer.cn</url>
+    <description>This plugin allows you to configure and use X-Developer in Jenkins - A Git Analytics Platform for Engineering.</description>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/X+Developer+Client+Plugin</url>
     <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
     <licenses>
         <license>
@@ -36,9 +35,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/FieldTech/${project.artifactId}-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:FieldTech/${project.artifactId}-plugin.git</developerConnection>
-        <url>https://github.com/FieldTech/${project.artifactId}-plugin</url>
+        <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     </scm>
 
     <dependencies>
