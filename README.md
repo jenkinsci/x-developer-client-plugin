@@ -1,7 +1,7 @@
 # X-Developer Client Jenkins Plugin
 
-- [English](https://github.com/FieldTech/x-developer-client-plugin/blob/master/README.md)
-- [中文](https://github.com/FieldTech/x-developer-client-plugin/blob/master/README-zh-cn.md)
+- [English](https://github.com/jenkensci/x-developer-client-plugin/blob/master/README.md)
+- [中文](https://github.com/jenkensci/x-developer-client-plugin/blob/master/README-zh-cn.md)
 
 This plugin connects Jenkins and X-Developer service - Git Analytics Platform for Engineering Productivity.
 
@@ -17,10 +17,10 @@ Get your `APPID` `APPKEY` from [API](https://x-developer.cn/accounts/api) page.
 
 ### 2. Create team
 
-- For free users, you could only create public analysis project, **it means everyone could access your team reports,** we recommend this to **opensource project teams.**
-- Private project is only for paid users.
+- For free users, you could only create public team, **which will be listed in [X-Developer Explore](https://x-developer.cn) but only developers have permission to access internal reports,** we recommend this to **open source projects.**
+- Private team is only for paid users.
 
-Once you created a project, check your `TEAMID` from [API](https://x-developer.cn/accounts/api) page.
+Once you created a team, check your `TEAMID` from [X-Developer API](https://x-developer.cn/accounts/api).
 
 ### 3. Config X-Developer Jenkins Plugin
 
@@ -35,7 +35,7 @@ In your Jenkins project setting, add a post build step, select X-Developer Analy
 - Check the box `Master` if this job is on master branch of repository, otherwise, keep it uncheck status.
 - Check the box `Force analysis` to run analysis immediately, otherwise X-Developer will run analysis from 5 p.m to 8 p.m. everyday.
 
-### 4. Build and Analysis
+### 4. Analysis after build
 
 The plugin will work with Jenkins build, and print the result of analysis service within build log.
 
@@ -45,9 +45,9 @@ X-Developer will send you email when analysis job is completed, you could open r
 
 ---
 
-## Demo
+## Showcases
 
-Feel free to access these [Demo Projects](https://x-developer.cn/projects/).
+Feel free to access these [Public Projects](https://x-developer.cn/projects/).
 
 ## Support
 
