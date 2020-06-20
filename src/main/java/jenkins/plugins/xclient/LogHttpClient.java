@@ -71,9 +71,8 @@ public class LogHttpClient {
             URIBuilder builder = new URIBuilder(serviceUrl);
             builder.setParameters(params);
             HttpGet httpGet = new HttpGet(builder.build());
-            try (CloseableHttpResponse response = client.execute(httpGet)) {
-                result = EntityUtils.toString(response.getEntity());
-            }
+            CloseableHttpResponse response = client.execute(httpGet);
+            result = EntityUtils.toString(response.getEntity());
         } catch (IOException | ParseException | URISyntaxException e) {
             listener.getLogger().println(String.format("Update status error: %s", e.getMessage()));
             return false;
