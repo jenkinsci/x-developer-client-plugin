@@ -116,15 +116,14 @@ public class LogHttpClient {
             HttpPost httpPost = new HttpPost(serviceUrl);
             HttpEntity entity = builder.build();
             httpPost.setEntity(entity);
-            try (CloseableHttpResponse response = client.execute(httpPost)) {
-                JSONObject result = JSONObject.fromObject(EntityUtils.toString(response.getEntity()));
-                if (result.getString("status").equals("success")) {
-                    listener.getLogger().println(Messages.LogHttpClient_Response_analysisSuccess());
-                    return true;
-                } else {
-                    listener.getLogger().println(result.getString("status"));
-                    listener.getLogger().println(result.getString("error"));
-                }
+            CloseableHttpResponse response = client.execute(httpPost);
+            JSONObject result = JSONObject.fromObject(EntityUtils.toString(response.getEntity()));
+            if (result.getString("status").equals("success")) {
+                listener.getLogger().println(Messages.LogHttpClient_Response_analysisSuccess());
+                return true;
+            } else {
+                listener.getLogger().println(result.getString("status"));
+                listener.getLogger().println(result.getString("error"));
             }
         } catch (IOException | ParseException e) {
             listener.getLogger().println(String.format("Analysis error: %s", e.getMessage()));
