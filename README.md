@@ -3,7 +3,7 @@
 - [English](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README.md)
 - [中文](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README-zh-cn.md)
 
-This plugin connects Jenkins and X-Developer service - Git Analytics Platform for Engineering Productivity.
+This plugin integrates with Jenkins the X-Developer - A Git Analytics Platform for Engineering Productivity.
 
 ## Usage
 

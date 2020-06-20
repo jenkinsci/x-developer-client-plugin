@@ -8,11 +8,13 @@ import hudson.util.Secret;
 import jenkins.model.GlobalConfiguration;
 import jenkins.model.Jenkins;
 import org.apache.commons.lang.StringUtils;
+import org.apache.hc.core5.http.ParseException;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.interceptor.RequirePOST;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 /**
@@ -117,7 +119,7 @@ public class Configuration extends GlobalConfiguration {
                 return FormValidation.ok(Messages.Configuration_Validation_success());
             }
             return FormValidation.error(Messages.Configuration_Validation_errors_authFailed());
-        } catch (IOException e) {
+        } catch (IOException | ParseException | URISyntaxException e) {
             LOGGER.warning(e.getMessage());
             return FormValidation.errorWithMarkup("<p>" + Messages.Configuration_Validation_failed() +"</p><pre>"+ Util.escape(Functions.printThrowable(e))+"</pre>");
         }

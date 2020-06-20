@@ -18,7 +18,6 @@
     <name>X-Developer Client Plugin</name>
     <description>This plugin allows you to configure and use X-Developer in Jenkins - A Git Analytics Platform for Engineering.</description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/X+Developer+Client+Plugin</url>
-    <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
     <licenses>
         <license>
             <name>MIT License</name>
