@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.36</version>
+        <version>3.55</version>
         <relativePath />
     </parent>
     <groupId>io.jenkins.plugins</groupId>
@@ -12,7 +12,7 @@
     <version>1.0</version>
     <packaging>hpi</packaging>
     <properties>
-        <jenkins.version>2.85</jenkins.version>
+        <jenkins.version>2.164.3</jenkins.version>
         <java.version>1.8</java.version>
         <java.level>8</java.level>
     </properties>
@@ -70,6 +70,18 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>structs</artifactId>
+            <version>1.17</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-job</artifactId>
+            <version>2.32</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <repositories>
