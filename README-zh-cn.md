@@ -1,12 +1,13 @@
 # X-Developer Client Jenkins Plugin
 
-- [English](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README.md)
-- [中文](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README-zh-cn.md)
+[![](https://ci.jenkins.io/job/Plugins/job/x-developer-client-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/x-developer-client-plugin/job/master)
+[![EN doc](https://img.shields.io/badge/document-English-blue.svg)](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README.md)
+[![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README-zh-cn.md)
 
 
 > X-Developer Client Plugin 在 Jenkins 构建任务完成后，触发 X-Developer 团队效能分析并通知分析结果。
 
-[X-Developer](https://x-developer.cn) 由场量科技研发，是全球第一款事实数据型研发效能度量分析平台。使用 X-Developer 平台及其开源工具，无需购买、设置或管理任何基础设施，您只需登录即可开始开展研发团队效能改进工作。目前，X-Developer 提供了最便捷、完整的研发效能度量解决方案，让您能够以开发者为中心展开改进活动，使您的团队能够围绕目标协同工作，及时同步项目进展，从而将他们从繁重的任务状态维护、项目报告工作中解放出来，集中精力完成研发工作，更好地编写代码，提高业务获得的价值。
+[X-Developer](https://x-developer.cn) 由场量科技研发，是全球第一款事实数据型研发效能度量分析平台。使用 X-Developer 平台及其开源工具，无需购买、设置或管理任何基础设施和任何开发工作，您只需登录即可开始开展研发团队效能改进。目前，X-Developer 提供了最便捷、完整的研发效能度量解决方案，让您能够以开发者为中心展开改进活动，使您的团队能够围绕目标协同工作，及时同步项目进展，从而将他们从繁重的任务状态维护、项目报告工作中解放出来，集中精力完成研发工作，更好地编写代码，提高业务获得的价值。
 
 包含了产品使用、集成、开源工具以及最佳实践的产品文档已正式发布，[点此查看](https://fieldtech.github.io/xdocs)。
 
@@ -56,6 +57,10 @@
 ## 演示
 
 访问 [公开团队](https://x-developer.cn/projects/) 查看已有的分析项目，如果您是这些团队中的一员，可以直接点击"我是开发者"申请访问内部的分析报告。
+
+## 文档
+
+X-Developer 产品文档包括了产品使用、集成、开源工具以及最佳实践，[点此查看](https://fieldtech.github.io/xdocs)。
 
 ## 支持
 

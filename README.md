@@ -1,7 +1,8 @@
 # X-Developer Client Jenkins Plugin
 
-- [English](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README.md)
-- [中文](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README-zh-cn.md)
+[![](https://ci.jenkins.io/job/Plugins/job/x-developer-client-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/x-developer-client-plugin/job/master)
+[![EN doc](https://img.shields.io/badge/document-English-blue.svg)](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README.md)
+[![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](https://github.com/jenkinsci/x-developer-client-plugin/blob/master/README-zh-cn.md)
 
 This plugin integrates with Jenkins the X-Developer - A Git Analytics Platform for Engineering Productivity.
 
