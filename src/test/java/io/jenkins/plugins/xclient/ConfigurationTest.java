@@ -1,4 +1,4 @@
-package jenkins.plugins.xclient;
+package io.jenkins.plugins.xclient;
 
 import com.gargoylesoftware.htmlunit.html.*;
 import org.junit.*;

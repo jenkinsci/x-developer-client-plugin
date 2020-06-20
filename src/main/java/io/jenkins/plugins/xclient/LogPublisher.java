@@ -1,4 +1,4 @@
-package jenkins.plugins.xclient;
+package io.jenkins.plugins.xclient;
 
 import hudson.*;
 import hudson.model.*;
