@@ -104,7 +104,6 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
 
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws InterruptedException, IOException {
-        Configuration config = Configuration.get();
         String logFile = workspace.getName() + ".csv";
         String logFilePath = workspace.getRemote() + "/" + logFile;
         File file = new File(logFilePath);
@@ -151,7 +150,7 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
         starter = starter.pwd(workspace).envs(build.getEnvironment(taskListener));
         proc = launcher.launch(starter);
         proc.join();
-        lastCommit = out.toString();
+        lastCommit = out.toString("utf-8");
         if (test) {
             lastCommit = "1585572510";
         }
@@ -203,5 +202,5 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
         }
     }
 
-    public static boolean test = false;
+    public static final boolean test = false;
 }
