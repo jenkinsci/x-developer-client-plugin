@@ -151,15 +151,10 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
         proc = launcher.launch(starter);
         proc.join();
         lastCommit = out.toString("utf-8");
-        if (test) {
-            lastCommit = "1585572510";
-        }
         Pattern pattern = Pattern.compile("[0-9]*");
         if (lastCommit == null || !pattern.matcher(lastCommit).matches()) {
             listener.getLogger().println(Messages.LogPublisher_Git_errors_logUpdateFailed());
-            if (!test) {
-                build.setResult(Result.UNSTABLE);
-            }
+            build.setResult(Result.UNSTABLE);
         } else {
             List<NameValuePair> params = LogHttpClient.buildUpdateParameters(
                     teamId,
@@ -176,9 +171,7 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
                 build.setResult(Result.SUCCESS);
             } else {
                 listener.getLogger().println(Messages.LogHttpClient_Response_analysisFailed());
-                if (!test) {
-                    build.setResult(Result.UNSTABLE);
-                }
+                build.setResult(Result.UNSTABLE);
             }
         }
     }
@@ -202,5 +195,4 @@ public class LogPublisher extends Publisher implements SimpleBuildStep {
         }
     }
 
-    public static final boolean test = false;
 }
