@@ -1,6 +1,7 @@
 package io.jenkins.plugins.xclient;
 
 import com.gargoylesoftware.htmlunit.html.*;
+import hudson.util.Secret;
 import org.junit.*;
 import static org.junit.Assert.*;
 

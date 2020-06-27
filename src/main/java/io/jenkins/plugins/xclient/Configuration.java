@@ -40,6 +40,10 @@ public class Configuration extends GlobalConfiguration {
      */
     private String appId;
     /**
+     * Key that store the given user's access key.
+     */
+    private String appKey;
+    /**
      * Secret key that store the given user's access key.
      */
     private Secret secretKey;
@@ -67,7 +71,6 @@ public class Configuration extends GlobalConfiguration {
     @DataBoundSetter
     public void setAppId(String appId) {
         this.appId = appId;
-        save();
     }
 
     /**
@@ -75,9 +78,8 @@ public class Configuration extends GlobalConfiguration {
      * @param appKey the new value of this field
      */
     @DataBoundSetter
-    public void setAppKey(String appKey) {
+    public void setAppKey(final String appKey) {
         this.secretKey = Secret.fromString(appKey);
-        save();
     }
 
 
@@ -123,6 +125,13 @@ public class Configuration extends GlobalConfiguration {
             LOGGER.warning(e.getMessage());
             return FormValidation.errorWithMarkup("<p>" + Messages.Configuration_Validation_failed() +"</p><pre>"+ Util.escape(Functions.printThrowable(e))+"</pre>");
         }
+    }
+
+    public Object readResolve() {
+        if (secretKey == null)
+            secretKey = Secret.fromString(appKey);
+        appKey = null;
+        return this;
     }
 
 }
